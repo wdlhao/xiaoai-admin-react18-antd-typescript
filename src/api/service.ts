@@ -1,9 +1,7 @@
 import axios from "axios";
 
 const service = axios.create({
-  // baseURL:  process.env.REACT_APP_BASE_URL,
   baseURL: import.meta.env.VITE_API_URL as string,
-  // baseURL: "/",
   timeout: 30000,
 });
 service.interceptors.request.use(

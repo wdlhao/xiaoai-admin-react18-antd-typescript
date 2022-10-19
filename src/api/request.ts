@@ -31,7 +31,7 @@ export function Request(args) {
   return new Promise((resolve, reject) => {
     commonRequest({ ...args })
       .then((res) => {
-        if (res.data.code === 200 ) {
+        if (res.data.code === "200" ) {
           resolve(res.data.data);
         } else {
           // message.error(res?.msg);

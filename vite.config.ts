@@ -28,31 +28,24 @@ export default defineConfig(({ mode, command }) => {
       host: true,
       open: true,
       proxy: {
-        "/api": {
-					target: env.VITE_API_URL, // easymock
-					changeOrigin: true,
-					rewrite: path => path.replace(/^\/api/, "")
-				}
+        // "/api": {
+				// 	target: env.VITE_API_URL, // easymock
+				// 	changeOrigin: true,
+				// 	rewrite: path => path.replace(/^\/api/, "")
+				// }
       }
     },
     plugins: [
 			react()
     ],
-    css: {
-      // postcss: {
-      //   plugins: [
-      //     {
-      //       postcssPlugin: 'internal:charset-removal',
-      //       AtRule: {
-      //         charset: (atRule) => {
-      //           if (atRule.name === 'charset') {
-      //             atRule.remove();
-      //           }
-      //         }
-      //       }
-      //     }
-      //   ]
-      // }
-    }
+    // global css
+		css: {
+			preprocessorOptions: {
+				less: {
+					javascriptEnabled: true,
+					additionalData: `@import "@/styles/var.less";`
+				}
+			}
+		},
   }
 })

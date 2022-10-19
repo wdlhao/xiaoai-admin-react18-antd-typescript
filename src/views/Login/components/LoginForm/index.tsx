@@ -9,6 +9,7 @@ import { HOME_URL } from "@/configs/config";
 
 import * as Urls from '@/api/config/url'
 import { Request } from '@/api/request'
+import { setToken } from "@/utils/cookie";
 
 // import { loginApi } from "@/api/modules/login";
 // import { connect } from "react-redux";
@@ -17,7 +18,7 @@ import { Request } from '@/api/request'
 
 const LoginForm = (props: any) => {
 	const navigate = useNavigate();
-	const { setToken, setTabsList } = props;
+	// const { setToken, setTabsList } = props;
 	const [form] = Form.useForm();
 	const [loading, setLoading] = useState<boolean>(false);
 
@@ -31,8 +32,9 @@ const LoginForm = (props: any) => {
 				method: "post",
 				data: loginForm
 			})
-			.then((result:any) => {
-				setToken(result?.access_token);
+			.then((res:any) => {
+				let { userInfo } = res;
+				setToken("token",userInfo.token);
 				// setTabsList([]);
 				message.success("登录成功！");
 				navigate(HOME_URL);
